@@ -1,0 +1,630 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cumpleaños · Sofía García · 25 años</title>
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Cumpleaños · Sofía García — 14 Jun 2026" />
+  <meta property="og:description" content="¡Sofía cumple 25 y quiere celebrarlo contigo! Confirma tu asistencia." />
+  <meta property="og:image"       content="img/fotos/img (2).png" />
+  <meta name="theme-color"        content="#C1666B" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="preload" as="image" href="img/fotos/img (2).png" fetchpriority="high">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23C1666B'/%3E%3Cellipse cx='50' cy='16' rx='5' ry='7' fill='%23FFE066'/%3E%3Crect x='46' y='22' width='8' height='14' rx='2' fill='white'/%3E%3Crect x='24' y='44' width='52' height='18' rx='4' fill='white' opacity='.95'/%3E%3Crect x='18' y='62' width='64' height='14' rx='4' fill='white' opacity='.9'/%3E%3C/svg%3E">
+</head>
+<body>
+
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav id="navbar" role="navigation" aria-label="Menú principal">
+    <div class="nav-logo">
+      <span class="nav-logo-balloon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+      <span data-c="name">Sofía García</span>
+      <span class="nav-logo-balloon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+    </div>
+    <div class="nav-links" role="list">
+      <a href="#galeria">Galería</a>
+      <a href="#itinerario">Programa</a>
+      <a href="#lugar">Lugar</a>
+      <a href="#rsvp">Confirmar</a>
+    </div>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-drawer" id="nav-drawer" role="dialog" aria-label="Menú móvil">
+    <a href="#galeria">Galería</a>
+    <a href="#itinerario">Programa</a>
+    <a href="#lugar">Lugar</a>
+    <a href="#rsvp">Confirmar</a>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section id="hero" aria-label="Portada">
+    <div class="hero-inner">
+      <p class="hero-pre">¡Celebramos junto a</p>
+
+      <h1 class="hero-name" data-c="name">Sofía García</h1>
+
+      <div class="hero-age-badge" aria-label="25 años">
+        <span class="hero-age-num">25</span>
+        <span class="hero-age-text">años</span>
+      </div>
+
+      <p class="hero-date">Domingo · 6 de Diciembre · 2026</p>
+      <p class="hero-time">7:00 PM · Salón de Eventos Milán</p>
+
+      <a href="#galeria" class="hero-cta">Ver detalles ↓</a>
+    </div>
+
+    <div class="countdown-wrapper" aria-label="Cuenta regresiva">
+      <div class="cd-item">
+        <span class="cd-num" id="cd-days">00</span>
+        <span class="cd-label">Días</span>
+      </div>
+      <div class="cd-sep" aria-hidden="true">:</div>
+      <div class="cd-item">
+        <span class="cd-num" id="cd-hours">00</span>
+        <span class="cd-label">Horas</span>
+      </div>
+      <div class="cd-sep" aria-hidden="true">:</div>
+      <div class="cd-item">
+        <span class="cd-num" id="cd-minutes">00</span>
+        <span class="cd-label">Minutos</span>
+      </div>
+      <div class="cd-sep" aria-hidden="true">:</div>
+      <div class="cd-item">
+        <span class="cd-num" id="cd-seconds">00</span>
+        <span class="cd-label">Segundos</span>
+      </div>
+    </div>
+
+    <!-- Decoración SVG globos -->
+    <svg class="hero-deco hero-deco--left" aria-hidden="true" viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="30" fill="#D4956A" opacity="0.6"/>
+      <line x1="40" y1="70" x2="38" y2="120" stroke="#FFD93D" stroke-width="2" opacity="0.6"/>
+      <circle cx="15" cy="25" r="20" fill="#C1666B" opacity="0.5"/>
+      <line x1="15" y1="45" x2="13" y2="90" stroke="#FF6B6B" stroke-width="1.5" opacity="0.5"/>
+    </svg>
+    <svg class="hero-deco hero-deco--right" aria-hidden="true" viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="30" fill="#A8EDEA" opacity="0.55"/>
+      <line x1="40" y1="70" x2="42" y2="120" stroke="#A8EDEA" stroke-width="2" opacity="0.55"/>
+      <circle cx="65" cy="25" r="20" fill="#D4956A" opacity="0.5"/>
+      <line x1="65" y1="45" x2="67" y2="90" stroke="#FFD93D" stroke-width="1.5" opacity="0.5"/>
+    </svg>
+  </section>
+
+  <!-- ══ WAVE SEPARATOR ══ -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFF8F0"/>
+    </svg>
+  </div>
+
+  <!-- ══ FRASE DE LA HOMENAJEADA ══ -->
+  <section class="section section-cream" aria-label="Mensaje de Sofía">
+    <div class="quote-block reveal">
+      <div class="quote-stars" aria-hidden="true">
+        <svg viewBox="0 0 120 24" xmlns="http://www.w3.org/2000/svg">
+          <text x="0"  y="18" font-size="16" fill="#D4956A">★</text>
+          <text x="26" y="18" font-size="20" fill="#C1666B">★</text>
+          <text x="56" y="18" font-size="24" fill="#D4956A">★</text>
+          <text x="88" y="18" font-size="20" fill="#C1666B">★</text>
+          <text x="114" y="18" font-size="16" fill="#D4956A">★</text>
+        </svg>
+      </div>
+      <blockquote class="quote-text">
+        "La vida me regaló 25 años llenos de amor, risas y momentos que atesoro. Hoy quiero celebrarlos con las personas más importantes para mí. ¡Acompañame!"
+      </blockquote>
+      <p class="quote-author">— <span data-c="name">Sofía García</span></p>
+    </div>
+  </section>
+
+  <!-- ══ WAVE SEPARATOR ══ -->
+  <div class="wave-sep wave-sep--flip" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+
+  <!-- ══ ANFITRIONES ══ -->
+  <section id="anfitriones" class="section section-white" aria-label="Anfitriones">
+    <div class="section-header">
+      <p class="s-pre reveal">Con todo el amor de</p>
+      <h2 class="s-title reveal reveal-d1">Sus Papás</h2>
+      <div class="coral-bar reveal reveal-d2"></div>
+    </div>
+    <div class="hosts-grid">
+      <div class="host-card reveal reveal-d1">
+        <div class="host-icon" aria-hidden="true">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="20" r="14" fill="#C1666B" opacity="0.15"/>
+            <circle cx="30" cy="19" r="9" fill="#C1666B" opacity="0.55"/>
+            <path d="M12 50c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#C1666B" opacity="0.55"/>
+          </svg>
+        </div>
+        <h3 class="host-name">Carlos García</h3>
+        <p class="host-role">Papá</p>
+      </div>
+      <div class="host-heart reveal" aria-hidden="true">
+        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 35 C20 35 4 24 4 14 C4 8 8 4 14 4 C17 4 20 7 20 7 C20 7 23 4 26 4 C32 4 36 8 36 14 C36 24 20 35 20 35Z" fill="#C1666B"/>
+        </svg>
+      </div>
+      <div class="host-card reveal reveal-d2">
+        <div class="host-icon" aria-hidden="true">
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="20" r="14" fill="#C1666B" opacity="0.15"/>
+            <circle cx="30" cy="19" r="9" fill="#C1666B" opacity="0.55"/>
+            <path d="M12 50c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#C1666B" opacity="0.55"/>
+          </svg>
+        </div>
+        <h3 class="host-name">María López</h3>
+        <p class="host-role">Mamá</p>
+      </div>
+    </div>
+    <p class="hosts-tagline reveal reveal-d3">Tienen el placer de invitarte a celebrar este momento especial</p>
+  </section>
+
+  <!-- ══ WAVE SEPARATOR ══ -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#C1666B"/>
+    </svg>
+  </div>
+
+  <!-- ══ CUENTA REGRESIVA SECCIÓN ══ -->
+  <section id="cuenta-regresiva" class="section section-coral" aria-label="Cuenta regresiva">
+    <div class="section-header">
+      <p class="s-pre s-pre--white reveal">¡Falta poco para la fiesta!</p>
+      <h2 class="s-title s-title--white reveal reveal-d1">Cuenta Regresiva</h2>
+    </div>
+    <p class="cr-fecha reveal">Domingo · 6 de Diciembre · 2026 · 7:00 PM</p>
+    <div class="cr-circles reveal reveal-d1">
+      <div class="cr-item">
+        <div class="cr-circle"><span id="cr-days">00</span></div>
+        <span class="cr-label">DÍAS</span>
+      </div>
+      <div class="cr-item">
+        <div class="cr-circle"><span id="cr-hours">00</span></div>
+        <span class="cr-label">HORAS</span>
+      </div>
+      <div class="cr-item">
+        <div class="cr-circle"><span id="cr-minutes">00</span></div>
+        <span class="cr-label">MINS</span>
+      </div>
+      <div class="cr-item">
+        <div class="cr-circle"><span id="cr-seconds">00</span></div>
+        <span class="cr-label">SECS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WAVE SEPARATOR ══ -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+
+  <!-- ══ GALERÍA ══ -->
+  <section id="galeria" class="section section-white" aria-label="Galería de fotos">
+    <div class="section-header">
+      <p class="s-pre reveal">Momentos que valen todo</p>
+      <h2 class="s-title reveal reveal-d1">Galería</h2>
+      <div class="coral-bar reveal reveal-d2"></div>
+    </div>
+    <div class="gallery-grid" role="list">
+      <div class="gallery-item reveal reveal-d1" role="listitem" tabindex="0" aria-label="Abrir foto 1">
+        <img src="img/fotos/img (1).png" alt="Sofía García" loading="lazy" decoding="async" />
+        <div class="gallery-overlay" aria-hidden="true">
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-d2" role="listitem" tabindex="0" aria-label="Abrir foto 2">
+        <img src="img/fotos/img (2).png" alt="Sofía García" loading="lazy" decoding="async" />
+        <div class="gallery-overlay" aria-hidden="true">
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-d3" role="listitem" tabindex="0" aria-label="Abrir foto 3">
+        <img src="img/fotos/img (3).png" alt="Sofía García" loading="lazy" decoding="async" />
+        <div class="gallery-overlay" aria-hidden="true">
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-d4" role="listitem" tabindex="0" aria-label="Abrir foto 4">
+        <img src="img/fotos/img (4).png" alt="Sofía García" loading="lazy" decoding="async" />
+        <div class="gallery-overlay" aria-hidden="true">
+          <span><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ QR FOTOS ══ -->
+  <section id="fotos-qr" class="section section-pink" aria-label="Sube tus fotos">
+    <div class="section-header">
+      <p class="s-pre reveal">El mejor recuerdo lo tienes tú</p>
+      <h2 class="s-title reveal reveal-d1">Comparte tus Fotos</h2>
+      <div class="coral-bar reveal reveal-d2"></div>
+    </div>
+    <div class="qr-block reveal reveal-d3">
+      <div class="qr-img-wrap">
+        <img src="img/fotos/QR Fotos.png" alt="QR para subir fotos" class="qr-img" loading="lazy" decoding="async" />
+      </div>
+      <div class="qr-info">
+        <p class="qr-hashtag" aria-label="Hashtag">#Sofia25</p>
+        <p class="qr-text">Escanea el código QR y sube tus fotos favoritas de la fiesta. ¡Armemos juntos el álbum de este cumple increíble!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ITINERARIO ══ -->
+  <section id="itinerario" class="section section-white" aria-label="Programa del evento">
+    <div class="section-header">
+      <p class="s-pre reveal">El plan de la noche</p>
+      <h2 class="s-title reveal reveal-d1">Programa</h2>
+      <div class="coral-bar reveal reveal-d2"></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal reveal-d1">
+        <div class="tl-time">7:00 PM</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <h4>Recepción</h4>
+          <p>Bienvenida y cocktail de apertura para los invitados</p>
+        </div>
+      </div>
+      <div class="tl-item reveal reveal-d2">
+        <div class="tl-time">8:00 PM</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <h4>Cena</h4>
+          <p>Cena especial para celebrar esta noche única</p>
+        </div>
+      </div>
+      <div class="tl-item reveal reveal-d3">
+        <div class="tl-time">9:00 PM</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <h4>Torta y Brindis</h4>
+          <p>El momento más dulce y emotivo de la noche</p>
+        </div>
+      </div>
+      <div class="tl-item reveal reveal-d4">
+        <div class="tl-time">10:00 PM</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <h4>¡A bailar!</h4>
+          <p>¡Que empiece la fiesta! Música y mucho baile</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WAVE SEPARATOR ══ -->
+  <div class="wave-sep" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#FFF0F3"/>
+    </svg>
+  </div>
+
+  <!-- ══ CANCIONES ══ -->
+  <section id="canciones" class="section section-pink" aria-label="Sugerencias de canciones">
+    <div class="section-header">
+      <p class="s-pre reveal">¡Tú eliges la pista!</p>
+      <h2 class="s-title reveal reveal-d1">¿Qué canción no puede faltar?</h2>
+      <div class="coral-bar reveal reveal-d2"></div>
+    </div>
+    <div class="song-card reveal reveal-d3">
+      <div class="song-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+      <p class="song-text">Mandanos la canción que TIENE que sonar esa noche. ¡El DJ va a tener en cuenta tu pedido!</p>
+      <a
+        href="https://wa.me/573128622945?text=Mi%20canci%C3%B3n%20para%20la%20fiesta%20de%20Sof%C3%ADa%3A%20"
+        target="_blank" rel="noopener noreferrer"
+        class="btn btn-coral"
+        aria-label="Enviar canción por WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Enviar mi canción
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ WAVE SEPARATOR ══ -->
+  <div class="wave-sep wave-sep--flip" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,30 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+
+  <!-- ══ MINI TRIVIA ══ -->
+  <section id="trivia" class="section section-white" aria-label="Mini trivia de Sofía">
+    <div class="section-header">
+      <p class="s-pre reveal">Ponte a prueba</p>
+      <h2 class="s-title reveal reveal-d1">¿Cuánto me conoces?</h2>
+      <div class="coral-bar reveal reveal-d2"></div>
+    </div>
+    <div class="trivia-grid">
+      <div class="trivia-card reveal reveal-d1">
+        <div class="trivia-num" aria-hidden="true">01</div>
+        <p class="trivia-q">¿Cuál es mi comida favorita?</p>
+        <div class="trivia-options">
+          <button class="trivia-opt" type="button">🍕 Pizza</button>
+          <button class="trivia-opt" type="button">🍣 Sushi</button>
+          <button class="trivia-opt trivia-opt--correct" type="button">🍝 Pasta</button>
+          <button class="trivia-opt" type="button">🌮 Tacos</button>
+        </div>
+      </div>
+      <div class="trivia-card reveal reveal-d2">
+        <div class="trivia-num" aria-hidden="true">02</div>
+        <p class="trivia-q">¿Dónde estudié?</p>
+        <div class="trivia-options">
+          <button class="trivia-opt" type="button">Los Andes</button>
+          <button class="trivia-opt trivia-opt--correct" type="button">Javeriana</button>
+          <button class="trivia-opt" type="button">Nacional</button>
+          <button class="trivia-opt" type="button">Rosario</button>
+        </div>
+      </div>
+      <div class="trivia-card reveal reveal-d3">
+        <div class="trivia-num" aria-hidden="true">03</div>
+        <p class="trivia-q">¿Mi película favorita?</p>
+        <div class="trivia-options">
+          <button class="trivia-opt" type="button">🎬 Titanic</button>
+          <button class="trivia-opt" type="button">🎬 La La Land</button>
+          <button class="trivia-opt trivia-opt--correct" type="button">🎬 Coco</button>
+          <button class="trivia-opt" type="button">🎬 Dirty Dancing</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MESA DE REGALOS ══ -->
+  <section id="regalos" class="section section-pink" aria-label="Mesa de regalos">
+    <div class="section-header">
+      <p class="s-pre reveal">Con tu presencia es suficiente</p>
+      <h2 class="s-title reveal reveal-d1">Lluvia de Sobres</h2>
+      <div class="coral-bar reveal reveal-d2"></div>
+    </div>
+    <div class="gift-card reveal reveal-d3">
+      <div class="gift-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+      <h3>Con amor</h3>
+      <p>Tu presencia es el mejor regalo. Si quieres hacernos un obsequio, una lluvia de sobres será muy apreciada.</p>
+    </div>
+  </section>
+
+  <!-- ══ MAPA ══ -->
+  <section id="lugar" class="section section-white" aria-label="Lugar del evento">
+    <div class="section-header">
+      <p class="s-pre reveal">¿Dónde festejamos?</p>
+      <h2 class="s-title reveal reveal-d1">El Lugar</h2>
+      <div class="coral-bar reveal reveal-d2"></div>
+    </div>
+    <div class="venue-block reveal reveal-d3">
+      <div class="venue-info">
+        <div class="venue-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3 class="venue-name">Salón de Eventos Milán</h3>
+        <p class="venue-address">Bogotá, Colombia</p>
+        <a
+          href="https://share.google/Hwx3yN2UhIyH1Enzh"
+          target="_blank" rel="noopener noreferrer"
+          class="btn btn-coral-outline"
+        >Ver en Google Maps</a>
+      </div>
+    </div>
+    <div class="map-embed reveal reveal-d4">
+      <iframe
+        src="https://www.google.com/maps?q=2.481158,-76.5693802&hl=es&z=18&output=embed"
+        width="100%" height="320" style="border:0;"
+        allowfullscreen="" loading="lazy"
+        title="Salón de Eventos Milán - Bogotá">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ══ RSVP ══ -->
+  <section id="rsvp" class="section section-coral" aria-label="Confirmación de asistencia">
+    <div class="section-header">
+      <p class="s-pre s-pre--white reveal">¿Nos acompañas?</p>
+      <h2 class="s-title s-title--white reveal reveal-d1">Confirma tu Asistencia</h2>
+    </div>
+    <p class="confirm-text reveal reveal-d2">Confirma antes del <strong>22 de Noviembre de 2026</strong> · ¡Te esperamos!</p>
+    <div class="reveal reveal-d3" style="text-align:center">
+      <a
+  href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumplea%C3%B1os%20Sof%C3%ADa%20Garc%C3%ADa&dates=20260614T190000%2F20260614T235900&details=Cumplea%C3%B1os%2025%20de%20Sof%C3%ADa%20Garc%C3%ADa&location=Sal%C3%B3n%20de%20Eventos%20Mil%C3%A1n%2C%20Bogot%C3%A1"
+  target="_blank" rel="noopener noreferrer"
+  class="btn-calendar" aria-label="Agregar al calendario"
+><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agregar al calendario</a>
+      <button class="btn-share" id="btn-share" aria-label="Compartir invitación"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Compartir invitación</button>
+      <a
+        href="https://wa.me/573128622945?text=Hola!%20Confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Sof%C3%ADa%20Garc%C3%ADa%20el%20s%C3%A1bado%2014%20de%20Junio%20de%202026"
+        target="_blank" rel="noopener noreferrer"
+        class="btn btn-white"
+        aria-label="Confirmar asistencia por WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Confirmar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-balloons" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+    <p class="footer-name" data-c="name">Sofía García</p>
+    <p class="footer-date">14 · Junio · 2026</p>
+    <p class="footer-tagline">25 años de momentos que valen todo</p>
+  </footer>
+
+  <div class="footer-credit">
+    <p>© 2026 · Desarrollado por <span>Juan Camilo Zarta Campo</span> &nbsp;|&nbsp; <span>GOLDEN PANDA</span></p>
+  </div>
+
+  <!-- ══ PLANES ══ -->
+  <section id="planes" class="section section-white" aria-label="Planes Golden Panda">
+    <div class="section-header">
+      <p class="s-pre reveal">Crea tu invitación de cumpleaños</p>
+      <h2 class="s-title reveal reveal-d1">Nuestros Planes</h2>
+      <div class="coral-bar reveal reveal-d2"></div>
+    </div>
+
+    <div class="planes-grid">
+
+      <!-- Básico -->
+      <div class="plan-card reveal reveal-d1">
+        <div class="plan-emoji" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 10"/></svg></div>
+        <p class="plan-label">Básico</p>
+        <div class="plan-price-block">
+          <span class="plan-amount">$139.000</span>
+          <span class="plan-cur">COP</span>
+        </div>
+        <div class="plan-rule"></div>
+        <ul class="plan-features">
+          <li>Portada con nombre, fecha y cuenta regresiva</li>
+          <li>Mensaje de la homenajeada</li>
+          <li>Galería de fotos</li>
+          <li>Programa con horarios</li>
+          <li>Sección de anfitriones</li>
+          <li>Confirmación por WhatsApp</li>
+          <li>Entrega en 1–2 días</li>
+        </ul>
+        <a
+          href="https://api.whatsapp.com/send/?phone=573128622945&text=Hola!%20Me%20interesa%20el%20Plan%20B%C3%A1sico%20(%24139.000%20COP)%20para%20una%20invitaci%C3%B3n%20de%20cumplea%C3%B1os.%20%C2%BFMe%20dan%20m%C3%A1s%20informaci%C3%B3n%3F"
+          target="_blank" rel="noopener noreferrer"
+          class="plan-cta"
+        >Consultar plan</a>
+      </div>
+
+      <!-- Estándar (featured) -->
+      <div class="plan-card plan-card--featured reveal reveal-d2">
+        <p class="plan-crown">★ Más Popular ★</p>
+        <div class="plan-emoji" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <p class="plan-label plan-label--light">Estándar</p>
+        <div class="plan-price-block">
+          <span class="plan-amount plan-amount--light">$169.000</span>
+          <span class="plan-cur plan-cur--light">COP</span>
+        </div>
+        <div class="plan-rule plan-rule--light"></div>
+        <ul class="plan-features plan-features--light">
+          <li>Todo lo del Básico</li>
+          <li>Diseño personalizado</li>
+          <li>Música de fondo</li>
+          <li>QR fotos</li>
+          <li>Cuenta regresiva animada</li>
+          <li>Canciones para el DJ</li>
+          <li>Lluvia de sobres</li>
+          <li>Animaciones</li>
+          <li>Entrega 1–3 días</li>
+        </ul>
+        <a
+          href="https://api.whatsapp.com/send/?phone=573128622945&text=Hola!%20Me%20interesa%20el%20Plan%20Est%C3%A1ndar%20(%24169.000%20COP)%20para%20una%20invitaci%C3%B3n%20de%20cumplea%C3%B1os.%20%C2%BFMe%20dan%20m%C3%A1s%20informaci%C3%B3n%3F"
+          target="_blank" rel="noopener noreferrer"
+          class="plan-cta plan-cta--fill"
+        >Consultar plan</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card plan-card--diamond reveal reveal-d3">
+        <div class="plan-emoji" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3L8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg></div>
+        <p class="plan-label">Premium</p>
+        <div class="plan-price-block">
+          <span class="plan-amount">$219.000</span>
+          <span class="plan-cur">COP</span>
+        </div>
+        <div class="plan-rule"></div>
+        <ul class="plan-features">
+          <li>Todo lo del Estándar</li>
+          <li>Mapa del lugar</li>
+          <li>Mini trivia de la festejada</li>
+          <li>Arte digital para compartir</li>
+          <li>Soporte hasta el evento</li>
+          <li>Entrega 2–4 días</li>
+        </ul>
+        <a
+          href="https://api.whatsapp.com/send/?phone=573128622945&text=Hola!%20Me%20interesa%20el%20Plan%20Premium%20(%24219.000%20COP)%20para%20una%20invitaci%C3%B3n%20de%20cumplea%C3%B1os.%20%C2%BFMe%20dan%20m%C3%A1s%20informaci%C3%B3n%3F"
+          target="_blank" rel="noopener noreferrer"
+          class="plan-cta"
+        >Consultar plan</a>
+      </div>
+    </div>
+
+    <div class="planes-contact reveal">
+      <p>¿Tienes dudas o quieres un presupuesto personalizado?</p>
+      <p>También creamos invitaciones digitales para <strong>bodas</strong>, <strong>XV años</strong> y todo tipo de eventos especiales.</p>
+      <a
+        href="https://api.whatsapp.com/send/?phone=573128622945&text=Hola!%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20invitaciones%20digitales%20para%20cumplea%C3%B1os."
+        target="_blank" rel="noopener noreferrer"
+        class="btn btn-coral"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Contactar para más información
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ LIGHTBOX ══ -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Galería ampliada">
+    <button class="lb-btn" id="lb-close" aria-label="Cerrar">✕</button>
+    <button class="lb-btn" id="lb-prev" aria-label="Anterior">&#8249;</button>
+    <button class="lb-btn" id="lb-next" aria-label="Siguiente">&#8250;</button>
+    <img id="lb-img" src="" alt="Sofía García" />
+  </div>
+
+  <!-- ══ MUSIC ══ -->
+  <div class="music-widget" aria-label="Música">
+    <audio id="bg-music" loop preload="auto">
+      <source src="audio/cancion.m4a" type="audio/mp4">
+    </audio>
+    <button class="music-btn" id="music-btn" aria-label="Reproducir música"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></button>
+  </div>
+
+  <!-- ══ WA FLOAT ══ -->
+  <a
+    href="https://wa.me/573128622945"
+    target="_blank" rel="noopener noreferrer"
+    class="wa-float"
+    aria-label="Contactar por WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script src="js/main.js"></script>
+<script>
+(function(){
+  const btn = document.getElementById('btn-share');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    const data = { title: 'Cumpleaños · Sofía García', text: '¡Sofía cumple 25 el 6 de diciembre de 2026. Celebrémoslo juntos!', url: window.location.href };
+    if (navigator.share) {
+      try { await navigator.share(data); } catch(_) {}
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+      btn.textContent = '¡Link copiado!';
+      setTimeout(() => btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Compartir invitación', 2500);
+    }
+  });
+})();
+</script>
+</body>
+</html>
